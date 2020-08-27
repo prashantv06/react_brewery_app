@@ -13,12 +13,8 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-.random_button{
+.responsive-width {
+  font-size: 3vw;
+  background-color: #000;
   color: #fff;
-  background: #000;
-  padding: 10px;;
 }
