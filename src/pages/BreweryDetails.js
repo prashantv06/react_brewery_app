@@ -68,14 +68,17 @@ class BreweryDetails extends Component {
       }
 
       componentDidMount() {
-        if(this.props.location.state) {
-            console.log(this.props.location.state, "details");
-            this.setState({details: this.props.location.state})
-        }
-    }
 
-    goBack() {
-        //history.goBack();
+        //let prevDetails = {}
+
+        if(this.props.location.state) {
+            console.log("data receive", this.props.location.state);
+            this.setState({details: this.props.location.state})
+            localStorage.setItem("storeDynamic","storeData")
+        }  
+
+       // prevDetails = this.state.details
+
     }
     
 
@@ -84,9 +87,7 @@ class BreweryDetails extends Component {
         const {details} = this.state; 
 
 
-        //const BrowserHistory = require('react-router/lib/BrowserHistory').default;
-
-        
+        //const BrowserHistory = require('react-router/lib/BrowserHistory').default;  
 
 
     return (
@@ -105,15 +106,13 @@ class BreweryDetails extends Component {
                         </div>
             </header>   */}
 
-            
-
             <header className="text-center">
                     <nav className="navbar navbar-light bg-dark" style={ this.getDetailStyle() }>
                         {/* <a class="navbar-brand" href="#">Navbar</a> */}
-                        <button className="navbar-brand" onClick={this.props.history.goBack}> Back </button>
+                        <Link to={{pathname: '/', state: details}} className="navbar-brand" > Back </Link>
                     </nav>
             </header>
-
+        
             <main>
                 <div className="container-fluid">
                     

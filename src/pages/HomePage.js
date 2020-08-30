@@ -10,14 +10,16 @@ class HomePage extends Component {
         }
       }
 
-    
-      componentDidUpdate() {
-        //this.getData();
-        
-      }
-
       componentDidMount() {
-        this.getData();
+        //this.getData();
+        if(this.props.location.state) {
+            console.log("data receive", this.props.location.state);
+            this.setState({beers: this.props.location.state})
+        }  
+        if(localStorage.getItem("storeDynamic") == null) {
+            this.getData();
+            console.log("localstorage is null")
+        }
       }
     
     
@@ -40,7 +42,6 @@ class HomePage extends Component {
           console.log('Success:', response);
           // this.setState({beers: response});
           this.setState({beers: response.data});
-          localStorage.setItem("beers","dataStore");
           //this.setState({beerDesc: response.data.style});
           //console.log("beers data", this.state.beers.style);
         })
@@ -108,7 +109,8 @@ class HomePage extends Component {
                           <p>
                             If true love had a taste, it would be a cold beer.
                           </p>
-                          <button type="button" className="btn btn-secondary" onClick={ this.fetchBrewery.bind(this) } style={ this.getStyle() }>
+                          <button type="button" className="btn btn-secondary" onClick={ this.fetchBrewery.bind(this) } style={ this.getStyle() }
+                          >
                           Get Random Beer
                           </button>
 
