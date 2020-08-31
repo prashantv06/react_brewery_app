@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Label from '../assests/fallback.jpg';
+import { FaBeer } from 'react-icons/fa';
+import '../App.css';
+//import { FcFactory } from 'react-icons/fc';
 
 class HomePage extends Component {
 
     state = {
         beers: {
             style: {},
+            breweries: []
         }
       }
 
       componentDidMount() {
-        //this.getData();
         if(this.props.location.state) {
             console.log("data receive", this.props.location.state);
             this.setState({beers: this.props.location.state})
@@ -31,8 +34,6 @@ class HomePage extends Component {
       getData() {
         var url = 'https://cors-anywhere.herokuapp.com/http://api.brewerydb.com/v2/beer/random/?withBreweries=Y&hasLabels=Y&key=a5c1b917e7ba62dcd79f434ed73bc72d';
     
-        //var url = 'https://jsonplaceholder.typicode.com/posts'
-    
         fetch(url, {
           method: 'GET',
           headers:{
@@ -40,10 +41,7 @@ class HomePage extends Component {
           }
         }).then(resp => resp.json()).then(response => {
           console.log('Success:', response);
-          // this.setState({beers: response});
           this.setState({beers: response.data});
-          //this.setState({beerDesc: response.data.style});
-          //console.log("beers data", this.state.beers.style);
         })
         .catch(error => console.error('Error:', error));
       }
@@ -51,7 +49,7 @@ class HomePage extends Component {
       
       getStyle = () => {
         return {
-          fontSize: '40px',
+          fontSize: '33px',
           backgroundColor: '#000',
           color: '#fff'
         }
@@ -59,18 +57,31 @@ class HomePage extends Component {
     
       breweryHead = () => {
         return {
-          fontSize: '30px',
+          fontSize: '27px',
           backgroundColor: '#B0B9C2',
           color: '#000',
           marginBottom: '15px',
           padding: '15px'
         }
       }
+
+      breweryTitleHead = () => {
+          return {
+            color: "#000"
+            
+          }
+      }
+
+      faicons = () => {
+          return{
+            verticalAlign: 'middle'
+        }
+      }
     
       breweryBody = () => {
         return {
           fontSize: '20px',
-          backgroundColor: '#C5C6C8',
+          backgroundColor: '#F4F1E0',
           color: '#000',
           padding: '15px',
           marginBottom: '15px'
@@ -87,12 +98,24 @@ class HomePage extends Component {
           margin: '0'
         }
       }  
+
+      breweryBodyDesc = () => {
+        return {
+          fontSize: '20px',
+          backgroundColor: '#C5C6C8',
+          color: '#000',
+          padding: '15px',
+          marginBottom: '30px'
+        }
+      }
     
       imgStyle = () => {
         return{
           marginBottom: '15px'
         }
       }
+
+      
 
 
 
@@ -109,13 +132,8 @@ class HomePage extends Component {
                           <p>
                             If true love had a taste, it would be a cold beer.
                           </p>
-                          <button type="button" className="btn btn-secondary" onClick={ this.fetchBrewery.bind(this) } style={ this.getStyle() }
-                          >
-                          Get Random Beer
-                          </button>
-
-                            
-
+                          <button id="getrandombtn" type="button" className="btn btn-secondary" onClick={ this.fetchBrewery.bind(this) } style={ this.getStyle() }
+                          > Get Random Beer</button>
                       </div>    
                     </div>
                   </header>  
@@ -127,38 +145,46 @@ class HomePage extends Component {
 
                               {/* Image Section */}
                               <div className="col-md-6 col-sm-12" style={this.imgStyle()}>
-                              <Link to="/details"> 
-                                <img src={Label} alt="Brewery Label"  className="img-responsive"/>
-                              </Link>  
+                                
+                                <img src={Label} alt="Brewery Label"  className="img-responsive" width="100%" />
+                                
+
+                                <div className="col-sm-12 text-center" style={ this.breweryBody() }>
+                                    <h1> <FaBeer style={ this.faicons() }/> {beers.name}</h1>
+                                </div> 
+
+
                               </div>
 
                               {/* Text Section */}
+                              
                               <div className="col-md-6 col-sm-12 ">
-
+                            
+                                {/* Landing Page Beer Title */}
 
                                 <Link to={{
                                     pathname: '/details',
                                     state: beers
-                                    }}> <div className="col-sm-12 text-center" style={ this.breweryHead() }>
-                                    <h1>{beers.name}</h1>
-                                  </div> 
+                                    }}> <div id="brewHead" className="col-sm-12 text-center" style={ this.breweryHead() }> 
+
+                                    {beers.breweries.map(brew => (
+                                        <p key={brew.name}>Brewery Name - <strong id="brewHover" style={ this.breweryTitleHead() } >{brew.name}</strong></p>
+                                    ))}
+                                    </div>
                                 </Link>
 
-                                  <div className="col-sm-12 text-center" style={ this.breweryBody() }>
-                                     <p>{
-                                       beers.style.description
-                                
-                                       }</p>
-                                  </div>
+                                {/* Landing Page Beer Body */}
+                                <div className="col-sm-12 text-center" style={ this.breweryBodyDesc() }>
+                                    <p>{beers.style.description}</p>
+                                </div>
                               </div>          
                           </div>
-
                     </div>
                   </main>
 
                   <footer>
-                    <p className="" style={ this.breweryFooter() }>
-                    @gdfhjdskjfhdkjfh
+                    <p id="homefooter" style={ this.breweryFooter() }>
+                    @TheRandomBeerApp ©PrasantVishwakarma
                     </p>
                   </footer>
 

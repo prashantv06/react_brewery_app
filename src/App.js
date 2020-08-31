@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-// import { Jumbotron } from 'reactstrap';
 import './App.css';
-// import Label from './assests/fallback.jpg';
 import BreweryDetails from './pages/BreweryDetails';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
-// import { Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 
 //let url = 'http://api.brewerydb.com/v2/beer/random/?withBreweries=Y&hasLabels=Y&key=a5c1b917e7ba62dcd79f434ed73bc72d'

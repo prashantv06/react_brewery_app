@@ -18,3 +18,19 @@
   background-color: #000;
   color: #fff;
 }
+
+#getrandombtn:hover{
+  background: #F28E3C !important;
+  color: #000 !important;
+}
+
+#brewHead:hover{
+  background: #F1C545 !important;
+  color: #000 !important 
+}
+
+#homefooter{
+  background: #FDE799 !important;
+}
+
+
