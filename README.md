@@ -7,6 +7,8 @@ To know more about the brewery please click on the brewery name section.
 ### API
 This react application makes use of BreweryDB API. To know more visit (https://www.brewerydb.com/developers/docs).
 
+### Data Storage
+This app dosen't stores any information neither in any database nor on cloud.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
