@@ -1,3 +1,13 @@
+### Get Random Beers 
+Click on the Random Beer button in the header to get any random beer with its description and brewery name.
+
+### Get Brewery Details
+To know more about the brewery please click on the brewery name section.
+
+### API
+This react application makes use of BreweryDB API. To know more visit (https://www.brewerydb.com/developers/docs).
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,3 +76,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
